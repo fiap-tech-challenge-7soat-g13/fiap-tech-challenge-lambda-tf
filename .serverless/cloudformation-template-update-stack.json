@@ -105,7 +105,7 @@
           "S3Key": "serverless/fiap-tech-challenge-lambda/dev/1727633922168-2024-09-29T18:18:42.168Z/signup.zip"
         },
         "Handler": "src/functions/signup/handler.main",
-        "Runtime": "nodejs14.x",
+        "Runtime": "nodejs16.x",
         "FunctionName": "fiap-tech-challenge-lambda-dev-signup",
         "MemorySize": 1024,
         "Timeout": 6,
@@ -137,7 +137,7 @@
           "S3Key": "serverless/fiap-tech-challenge-lambda/dev/1727633922168-2024-09-29T18:18:42.168Z/login.zip"
         },
         "Handler": "src/functions/login/handler.main",
-        "Runtime": "nodejs14.x",
+        "Runtime": "nodejs16.x",
         "FunctionName": "fiap-tech-challenge-lambda-dev-login",
         "MemorySize": 1024,
         "Timeout": 6,
@@ -169,7 +169,7 @@
           "S3Key": "serverless/fiap-tech-challenge-lambda/dev/1727633922168-2024-09-29T18:18:42.168Z/hello.zip"
         },
         "Handler": "src/functions/hello/handler.main",
-        "Runtime": "nodejs14.x",
+        "Runtime": "nodejs16.x",
         "FunctionName": "fiap-tech-challenge-lambda-dev-hello",
         "MemorySize": 1024,
         "Timeout": 6,
@@ -201,7 +201,7 @@
           "S3Key": "serverless/fiap-tech-challenge-lambda/dev/1727633922168-2024-09-29T18:18:42.168Z/welcome.zip"
         },
         "Handler": "src/functions/welcome/handler.main",
-        "Runtime": "nodejs14.x",
+        "Runtime": "nodejs16.x",
         "FunctionName": "fiap-tech-challenge-lambda-dev-welcome",
         "MemorySize": 1024,
         "Timeout": 6,

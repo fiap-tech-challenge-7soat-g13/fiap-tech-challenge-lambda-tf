@@ -135,7 +135,7 @@ resource "aws_lambda_function" "welcome_check_in_message_lambda" {
   function_name = "welcomeRoyalCheckInMessage"
   role          = aws_iam_role.role_api_gateway.arn
   handler       = "main.handler"
-  runtime       = "nodejs14.x"
+  runtime       = "nodejs16.x"
 
   layers = var.util_layer_arn_array
 

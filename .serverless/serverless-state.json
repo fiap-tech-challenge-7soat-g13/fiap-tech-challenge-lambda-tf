@@ -7,7 +7,7 @@
     "provider": {
       "name": "aws",
       "region": "us-east-1",
-      "runtime": "nodejs14.x",
+      "runtime": "nodejs16.x",
       "apiGateway": {
         "minimumCompressionSize": 1024,
         "shouldStartNameWithService": true
@@ -147,7 +147,7 @@
                 "S3Key": "serverless/fiap-tech-challenge-lambda/dev/1727633922168-2024-09-29T18:18:42.168Z/signup.zip"
               },
               "Handler": "src/functions/signup/handler.main",
-              "Runtime": "nodejs14.x",
+              "Runtime": "nodejs16.x",
               "FunctionName": "fiap-tech-challenge-lambda-dev-signup",
               "MemorySize": 1024,
               "Timeout": 6,
@@ -179,7 +179,7 @@
                 "S3Key": "serverless/fiap-tech-challenge-lambda/dev/1727633922168-2024-09-29T18:18:42.168Z/login.zip"
               },
               "Handler": "src/functions/login/handler.main",
-              "Runtime": "nodejs14.x",
+              "Runtime": "nodejs16.x",
               "FunctionName": "fiap-tech-challenge-lambda-dev-login",
               "MemorySize": 1024,
               "Timeout": 6,
@@ -211,7 +211,7 @@
                 "S3Key": "serverless/fiap-tech-challenge-lambda/dev/1727633922168-2024-09-29T18:18:42.168Z/hello.zip"
               },
               "Handler": "src/functions/hello/handler.main",
-              "Runtime": "nodejs14.x",
+              "Runtime": "nodejs16.x",
               "FunctionName": "fiap-tech-challenge-lambda-dev-hello",
               "MemorySize": 1024,
               "Timeout": 6,
@@ -243,7 +243,7 @@
                 "S3Key": "serverless/fiap-tech-challenge-lambda/dev/1727633922168-2024-09-29T18:18:42.168Z/welcome.zip"
               },
               "Handler": "src/functions/welcome/handler.main",
-              "Runtime": "nodejs14.x",
+              "Runtime": "nodejs16.x",
               "FunctionName": "fiap-tech-challenge-lambda-dev-welcome",
               "MemorySize": 1024,
               "Timeout": 6,
@@ -1261,7 +1261,7 @@
         },
         "memory": 1024,
         "timeout": 6,
-        "runtime": "nodejs14.x",
+        "runtime": "nodejs16.x",
         "vpc": {},
         "versionLogicalId": "SignupLambdaVersioniyrGvEBHvRez6s7k9o6B6Fb76RKVVISyJuFxgypPc"
       },
@@ -1306,7 +1306,7 @@
         },
         "memory": 1024,
         "timeout": 6,
-        "runtime": "nodejs14.x",
+        "runtime": "nodejs16.x",
         "vpc": {},
         "versionLogicalId": "LoginLambdaVersionoZ7IKZQsMWtgnlN5p5WYXBNgJwKgpAWv2Zfqih8tHA"
       },
@@ -1360,7 +1360,7 @@
         },
         "memory": 1024,
         "timeout": 6,
-        "runtime": "nodejs14.x",
+        "runtime": "nodejs16.x",
         "vpc": {},
         "versionLogicalId": "HelloLambdaVersionaUOBbDvh1gEg1TAYIpTSXKgE1LECJXNzRbkrXoSWIew"
       },
@@ -1398,7 +1398,7 @@
         },
         "memory": 1024,
         "timeout": 6,
-        "runtime": "nodejs14.x",
+        "runtime": "nodejs16.x",
         "vpc": {},
         "versionLogicalId": "WelcomeLambdaVersionj3guMxwqUbS09LccAXHMe9qku7QnIaI7fKbXhy4ZQ"
       }

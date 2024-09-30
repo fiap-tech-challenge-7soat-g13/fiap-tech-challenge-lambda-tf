@@ -8,7 +8,7 @@ resource "aws_lambda_layer_version" "util_layer" {
   filename   = "${path.module}/files/util-layer-code.zip"
   layer_name = "utilLayer"
 
-  compatible_runtimes = ["nodejs14.x"]
+  compatible_runtimes = ["nodejs16.x"]
 
   source_code_hash = filebase64sha256(data.archive_file.util_layer_code_lambda.output_path)
 }
