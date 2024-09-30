@@ -57,9 +57,9 @@ resource "aws_cognito_user_pool" "cognito_user_pool_taste_food" {
 }
 
 resource "aws_cognito_user_pool_client" "cognito_user_pool_client_taste_food" {
-  name         = var.cognito_database_user_pool_name
-  user_pool_id = aws_cognito_user_pool.cognito_user_pool_taste_food.id
-  generate_secret = var.cognito_database_user_pool_generate_secret
-  explicit_auth_flows = var.cognito_database_user_pool_explicit_auth_flows
+  name                   = var.cognito_database_user_pool_name
+  user_pool_id           = aws_cognito_user_pool.cognito_user_pool_taste_food.id
+  generate_secret        = var.cognito_database_user_pool_generate_secret
+  explicit_auth_flows    = var.cognito_database_user_pool_explicit_auth_flows
   refresh_token_validity = var.cognito_database_user_pool_refresh_token_validity
 }
