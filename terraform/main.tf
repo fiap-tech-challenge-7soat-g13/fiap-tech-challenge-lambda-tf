@@ -6,8 +6,8 @@ data "terraform_remote_state" "taste-food" {
   backend = "s3"
 
   config = {
-    bucket = "tastefood-3soat-g13-iac"
-    key    = "terraform/fiap-tech-challenge-lambda-tf.tfstate"
+    bucket = "terraform-state-829dbe75"
+    key    = "fiap-tech-challenge-kubernetes-tf"
     region = "us-east-1"
   }
 }
