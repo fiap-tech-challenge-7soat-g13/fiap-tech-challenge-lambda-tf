@@ -6,7 +6,7 @@ data "terraform_remote_state" "taste-food" {
   backend = "s3"
 
   config = {
-    bucket = "tastefood-3soat-g13-iac-taste-food"
+    bucket = "tastefood-3soat-g13-iac"
     key    = "live/terraform.tfstate"
     region = var.region
   }
