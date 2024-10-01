@@ -87,6 +87,10 @@ data "aws_lb" "orders_load_balancer" {
   name = var.orders_load_balancer_name
 }
 
+data "aws_vpc" "default" {
+  default = true
+}
+
 resource "aws_security_group" "auth_sign_up" {
   name   = "auth_sign_up"
   vpc_id = data.aws_vpc.default.id
