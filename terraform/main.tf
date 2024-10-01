@@ -2,7 +2,7 @@ locals {
   runtime = "python3.12"
 }
 
-data "terraform_remote_state" "taste-food" {
+data "terraform_remote_state" {
   backend = "s3"
 
   config = {
@@ -83,7 +83,7 @@ resource "aws_cognito_user_pool_client" "client" {
   user_pool_id = aws_cognito_user_pool.user_pool.id
 }
 
-data "aws_lb" "orders_load_balancer" {
+data "orders_load_balancer" {
   name = var.orders_load_balancer_name
 }
 
