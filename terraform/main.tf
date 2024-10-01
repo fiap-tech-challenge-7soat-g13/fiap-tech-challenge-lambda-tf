@@ -2,16 +2,6 @@ locals {
   runtime = "python3.12"
 }
 
-data "terraform_remote_state" "taste-food" {
-  backend = "s3"
-
-  config = {
-    bucket = "terraform-state-829dbe75"
-    key    = "fiap-tech-challenge-lambda-tf"
-    region = "us-east-1"
-  }
-}
-
 resource "null_resource" "always_run" {
   triggers = {
     timestamp = timestamp()
