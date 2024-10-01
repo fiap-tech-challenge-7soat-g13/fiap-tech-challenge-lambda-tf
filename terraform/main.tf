@@ -3,9 +3,11 @@ locals {
 }
 
 data "terraform_remote_state" "taste-food" {
-  backend "s3" {
+  backend = "s3"
+
+  config = {
     bucket = "tastefood-3soat-g13-iac"
-    key    = "terraform-tf"
+    key    = "terraform.tfstate"
     region = "us-east-1"
   }
 }
