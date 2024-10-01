@@ -7,7 +7,7 @@ data "terraform_remote_state" "taste-food" {
 
   config = {
     bucket = "tastefood-3soat-g13-iac"
-    key    = "terraform.tfstate"
+    key    = "fiap-tech-challenge-lambda-tf"
     region = "us-east-1"
   }
 }
