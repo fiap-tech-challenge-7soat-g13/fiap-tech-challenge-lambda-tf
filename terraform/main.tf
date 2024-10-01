@@ -2,7 +2,7 @@ locals {
   runtime = "python3.12"
 }
 
-data "terraform_remote_state" "taste-food" {
+data "terraform-state-829dbe75" "taste-food" {
   backend = "s3"
 
   config = {
