@@ -6,11 +6,6 @@ terraform {
     }
   }
 
-  backend "s3" {
-    bucket = "tastefood-3soat-g13-iac-auth"
-    key    = "live/terraform.tfstate"
-    region = "us-east-1"
-  }
 }
 
 provider "aws" {
