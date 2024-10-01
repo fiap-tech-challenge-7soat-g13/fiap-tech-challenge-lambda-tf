@@ -121,7 +121,6 @@ module "lambda_auth_sign_up" {
     }
   }
 
-  vpc_subnet_ids         = data.aws_vpc.default.id
   vpc_security_group_ids = [aws_security_group.auth_sign_up.id]
   attach_network_policy  = true
 }
