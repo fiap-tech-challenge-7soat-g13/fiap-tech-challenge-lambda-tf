@@ -13,6 +13,8 @@ TARGET_PORT = os.environ.get("TARGET_PORT")
 
 
 def lambda_handler(event, context):
+    print('Teste')
+    print(event)
     logging.info(event)
 
     cpf = event.get("cpf")
