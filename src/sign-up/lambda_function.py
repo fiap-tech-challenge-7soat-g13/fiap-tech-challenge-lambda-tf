@@ -13,7 +13,6 @@ TARGET_PORT = os.environ.get("TARGET_PORT")
 
 
 def lambda_handler(event, context):
-    print('Teste')
     print(event)
     logging.info(event)
 
@@ -23,6 +22,7 @@ def lambda_handler(event, context):
     payload = {}
 
     if cpf:
+        print('Teste CPF')
         username = cpf
         user_attributes.append({"Name": "custom:CPF", "Value": cpf})
         payload["document"] = cpf    
@@ -35,6 +35,9 @@ def lambda_handler(event, context):
 
     headers = {"Content-Type": "application/json"}
     url = f"http://{LOAD_BALANCER_DNS}:{TARGET_PORT}/customers"
+    print('payload: ' + payload)
+    print('headers: ' + headers)
+    print('url: ' + url)
     response = requests.post(url, json=payload, headers=headers).json()
     print(response)
     customer_id = response["id"]
