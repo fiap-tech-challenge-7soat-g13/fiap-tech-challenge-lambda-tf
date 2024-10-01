@@ -7,7 +7,7 @@ terraform {
   }
 
   backend "s3" {
-    bucket = "tastefood-3soat-g13-iac-auth"
+    bucket = "tastefood-3soat-g13-iac"
     key    = "live/terraform.tfstate"
     region = "us-east-1"
   }
