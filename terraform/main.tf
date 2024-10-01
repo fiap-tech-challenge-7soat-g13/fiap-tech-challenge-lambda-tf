@@ -83,8 +83,8 @@ resource "aws_cognito_user_pool_client" "client" {
   user_pool_id = aws_cognito_user_pool.user_pool.id
 }
 
-data "aws_lb" "orders_load_balancer" {
-  name = var.orders_load_balancer_name
+data "aws_lb" "default" {
+  default = true
 }
 
 data "aws_vpc" "default" {
