@@ -22,11 +22,12 @@ def lambda_handler(event, context):
     payload = {}
 
     if cpf:
-        print('Teste CPF')
+        print('Teste CPF: ' + cpf)
         username = cpf
         print('username: ' + username)
+        print('user_attributes1: ' + user_attributes)
         user_attributes.append({"Name": "custom:CPF", "Value": cpf})
-        print('user_attributes: ' + user_attributes)
+        print('user_attributes2: ' + user_attributes)
         payload["document"] = cpf
         print('payload["document"]: ' + payload["document"])
     else:
