@@ -18,8 +18,8 @@ def lambda_handler(event, context):
 
     cpf = event.get("cpf")
 
-    var user_attributes = []
-    var payload = {}
+    let user_attributes = []
+    let payload = {}
 
     if cpf:
         print('Teste CPF: ' + cpf)
