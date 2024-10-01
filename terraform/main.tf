@@ -7,7 +7,7 @@ data "terraform_remote_state" "taste-food" {
 
   config = {
     bucket = "tastefood-3soat-g13-iac"
-    key    = "env:/prod/terraform/terraform.tfstate"
+    key    = "terraform/terraform.tfstate"
     region = "us-east-1"
   }
 }
