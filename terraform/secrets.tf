@@ -4,8 +4,8 @@ module "cognito_ssm_param" {
   type   = "String"
 
   value = jsonencode({
-    "issueruri": "https://cognito-idp.${var.region}.amazonaws.com/${aws_cognito_user_pool.user_pool.id}"
-    "jwkseturi": "https://cognito-idp.${var.region}.amazonaws.com/${aws_cognito_user_pool.user_pool.id}/.well-known/jwks.json"
+    "issueruri": "https://cognito-idp.us-east-1.amazonaws.com/${aws_cognito_user_pool.user_pool.id}"
+    "jwkseturi": "https://cognito-idp.us-east-1.amazonaws.com/${aws_cognito_user_pool.user_pool.id}/.well-known/jwks.json"
   })
 
   tags = var.tags

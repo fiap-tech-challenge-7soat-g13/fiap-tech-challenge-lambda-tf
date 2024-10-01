@@ -8,7 +8,7 @@ data "terraform_remote_state" "taste-food" {
   config = {
     bucket = "tastefood-3soat-g13-iac"
     key    = "live/terraform.tfstate"
-    region = var.region
+    region = us-east-1
   }
 }
 
@@ -196,7 +196,7 @@ module "lambda_auth_authorizer" {
   source_path = "../src/auth-authorizer"
 
   environment_variables = {
-    REGION       = var.region
+    REGION       = us-east-1
     USER_POOL_ID = aws_cognito_user_pool.user_pool.id
     CLIENT_ID    = aws_cognito_user_pool_client.client.id
   }
