@@ -15,9 +15,7 @@ TARGET_PORT = os.environ.get("TARGET_PORT")
 def lambda_handler(event, context):
     logging.info(event)
 
-    body = json.loads(event.get("body", "{}"))
-
-    cpf = body.get("cpf")
+    cpf = event.get("cpf")
 
     user_attributes = []
     payload = {}

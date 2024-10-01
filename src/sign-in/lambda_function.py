@@ -12,9 +12,7 @@ CLIENT_ID = os.environ.get('CLIENT_ID')
 
 
 def lambda_handler(event, context):
-    body = json.loads(event['body'])
-
-    identifier = body.get('cpf')
+    identifier = event.get('cpf')
 
     if not identifier:
         return {
