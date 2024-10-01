@@ -18,15 +18,15 @@ def lambda_handler(event, context):
 
     cpf = event.get("cpf")
 
-    user_attributes = []
-    payload = {}
+    var user_attributes = []
+    var payload = {}
 
     if cpf:
         print('Teste CPF: ' + cpf)
         username = cpf
         print('username: ' + username)
         print('user_attributes1: ' + user_attributes)
-        user_attributes.append({"Name": "custom:CPF", "Value": cpf})
+        user_attributes.push({"Name": "custom:CPF", "Value": cpf})
         print('user_attributes2: ' + user_attributes)
         payload["document"] = cpf
         print('payload["document"]: ' + payload["document"])
@@ -47,7 +47,7 @@ def lambda_handler(event, context):
     response = requests.post(url, json=payload, headers=headers).json()
     print(response)
     customer_id = response["id"]
-    user_attributes.append({"Name": "custom:CUSTOMER_ID", "Value": customer_id})
+    user_attributes.push({"Name": "custom:CUSTOMER_ID", "Value": customer_id})
 
     response = cognito_client.admin_create_user(
         UserPoolId=USER_POOL_ID,
