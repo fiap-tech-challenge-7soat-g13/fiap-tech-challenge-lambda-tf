@@ -73,10 +73,6 @@ resource "aws_cognito_user_pool_client" "client" {
   user_pool_id = aws_cognito_user_pool.user_pool.id
 }
 
-data "aws_lb" "orders_load_balancer" {
-  name = var.orders_load_balancer_name
-}
-
 data "aws_vpc" "default" {
   default = true
 }
@@ -108,7 +104,6 @@ module "lambda_auth_sign_up" {
 
   environment_variables = {
     USER_POOL_ID      = aws_cognito_user_pool.user_pool.id
-    LOAD_BALANCER_DNS = data.aws_lb.orders_load_balancer.dns_name
     TARGET_PORT       = var.target_group_port
   }
 
