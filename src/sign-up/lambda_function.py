@@ -27,9 +27,9 @@ def lambda_handler(event, context):
         print('username: ' + username)
         print('user_attributes1: ' + user_attributes)
         user_attributes.push({"Name": "custom:CPF", "Value": cpf})
-        print('user_attributes2: ' + user_attributes)
+        print(user_attributes)
         payload["document"] = cpf
-        print('payload["document"]: ' + payload["document"])
+        print(payload["document"])
     else:
         return {
             "statusCode": 400,
@@ -38,12 +38,12 @@ def lambda_handler(event, context):
         }
 
     headers = {"Content-Type": "application/json"}
-    print('headers: ' + headers)
-    print('LOAD_BALANCER_DNS: ' + LOAD_BALANCER_DNS)
-    print('TARGET_PORT: ' + TARGET_PORT)
+    print(headers)
+    print(LOAD_BALANCER_DNS)
+    print(TARGET_PORT)
     url = f"http://{LOAD_BALANCER_DNS}:{TARGET_PORT}/customers"
-    print('url: ' + url)
-    print('payload: ' + payload)
+    print(url)
+    print(payload)
     response = requests.post(url, json=payload, headers=headers).json()
     print(response)
     customer_id = response["id"]
