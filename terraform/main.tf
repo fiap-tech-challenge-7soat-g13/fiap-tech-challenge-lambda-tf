@@ -89,7 +89,7 @@ data "aws_lb" "orders_load_balancer" {
 
 resource "aws_security_group" "auth_sign_up" {
   name   = "auth_sign_up"
-  vpc_id = data.terraform_remote_state.taste-food.outputs.vpc_id
+  vpc_id = data.aws_vpc.default.id
 
   egress {
     from_port   = 0
@@ -132,7 +132,7 @@ module "lambda_auth_sign_up" {
     }
   }
 
-  vpc_subnet_ids         = data.terraform_remote_state.taste-food.outputs.private_subnets
+  vpc_subnet_ids         = data.aws_vpc.default.id
   vpc_security_group_ids = [aws_security_group.auth_sign_up.id]
   attach_network_policy  = true
 }
