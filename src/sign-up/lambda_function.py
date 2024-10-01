@@ -25,7 +25,7 @@ def lambda_handler(event, context):
         print('Teste CPF: ' + cpf)
         username = cpf
         print('username: ' + username)
-        print('user_attributes1: ' + user_attributes)
+        print(user_attributes)
         user_attributes.push({"Name": "custom:CPF", "Value": cpf})
         print(user_attributes)
         payload["document"] = cpf
