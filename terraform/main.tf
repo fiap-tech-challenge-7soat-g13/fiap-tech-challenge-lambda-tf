@@ -2,6 +2,16 @@ locals {
   runtime = "python3.12"
 }
 
+data "terraform_remote_state" "taste-food" {
+  backend = "s3"
+
+  config = {
+    bucket = "tastefood-3soat-g13-iac-taste-food"
+    key    = "live/terraform.tfstate"
+    region = var.region
+  }
+}
+
 resource "null_resource" "always_run" {
   triggers = {
     timestamp = timestamp()
