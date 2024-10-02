@@ -77,10 +77,6 @@ data "aws_vpc" "default" {
   default = true
 }
 
-data "aws_lb" "orders_load_balancer" {
-  name = var.orders_load_balancer_name
-}
-
 resource "aws_security_group" "auth_sign_up" {
   name   = "auth_sign_up"
   vpc_id = data.aws_vpc.default.id
@@ -108,7 +104,6 @@ module "lambda_auth_sign_up" {
 
   environment_variables = {
     USER_POOL_ID      = aws_cognito_user_pool.user_pool.id
-    LOAD_BALANCER_DNS = data.aws_lb.orders_load_balancer.dns_name
     TARGET_PORT       = var.target_group_port
   }
 
