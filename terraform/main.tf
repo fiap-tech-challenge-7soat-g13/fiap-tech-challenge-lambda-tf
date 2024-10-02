@@ -159,16 +159,3 @@ module "lambda_auth_sign_in" {
     aws_cognito_user_pool.user_pool
   ]
 }
-
-module "lambda_auth_challenge" {
-  source  = "terraform-aws-modules/lambda/aws"
-  version = "7.2.2"
-
-  function_name = "auth-challenge"
-  handler       = "lambda_function.lambda_handler"
-  runtime       = local.runtime
-
-  source_path = "../src/auth-challenge"
-
-  tags = var.tags
-}
