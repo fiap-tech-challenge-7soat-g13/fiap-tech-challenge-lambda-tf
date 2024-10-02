@@ -172,22 +172,3 @@ module "lambda_auth_challenge" {
 
   tags = var.tags
 }
-
-module "lambda_auth_authorizer" {
-  source  = "terraform-aws-modules/lambda/aws"
-  version = "7.2.2"
-
-  function_name = "auth-authorizer"
-  handler       = "lambda_function.lambda_handler"
-  runtime       = local.runtime
-
-  source_path = "../src/auth-authorizer"
-
-  environment_variables = {
-    REGION       = "us-east-1"
-    USER_POOL_ID = aws_cognito_user_pool.user_pool.id
-    CLIENT_ID    = aws_cognito_user_pool_client.client.id
-  }
-
-  tags = var.tags
-}
