@@ -77,34 +77,6 @@ data "aws_vpc" "default" {
   default = true
 }
 
-data "aws_subnets" "default" {
-  filter {
-    name   = "vpc-id"
-    values = [data.aws_vpc.default.id]
-  }
-}
-data "aws_subnet" "default" {
-  for_each = toset(data.aws_subnets.default.ids)
-  id       = each.value
-}
-
-data "aws_lb" "orders_loadbalancer" {
-  name = "orders-load-balancer"
-}
-
-resource "aws_lb" "orders-load-balancer" {
-  name               = "orders-load-balancer"
-  internal           = false
-  load_balancer_type = "network"
-  subnets            = [for subnet in data.aws_subnet.default : subnet.id if subnet.availability_zone != "us-east-1e"]
-
-  enable_deletion_protection = true
-
-  tags = {
-    Environment = "production"
-  }
-}
-
 resource "aws_security_group" "auth_sign_up" {
   name   = "auth_sign_up"
   vpc_id = data.aws_vpc.default.id
@@ -132,7 +104,6 @@ module "lambda_auth_sign_up" {
 
   environment_variables = {
     USER_POOL_ID      = aws_cognito_user_pool.user_pool.id
-    LOAD_BALANCER_DNS = data.aws_lb.orders-load-balancer.dns_name
     TARGET_PORT       = var.target_group_port
   }
 

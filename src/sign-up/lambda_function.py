@@ -14,7 +14,6 @@ TARGET_PORT = os.environ.get("TARGET_PORT")
 
 def lambda_handler(event, context):
     print(event)
-    logging.info(event)
 
     cpf = event.get("cpf")
 
@@ -37,30 +36,10 @@ def lambda_handler(event, context):
             "body": "{ 'message': 'Please provide either CPF and Name' }",
         }
 
-    headers = {"Content-Type": "application/json"}
-    print(headers)
-    print(LOAD_BALANCER_DNS)
-    print(TARGET_PORT)
-    url = f"http://{LOAD_BALANCER_DNS}:{TARGET_PORT}/customers"
-    print(url)
-    print(payload)
-    response = requests.post(url, json=payload, headers=headers).json()
-    print(response)
-    customer_id = response["id"]
-    user_attributes.append({"Name": "custom:CUSTOMER_ID", "Value": customer_id})
-
-    response = cognito_client.admin_create_user(
-        UserPoolId=USER_POOL_ID,
-        Username=username,
-        UserAttributes=user_attributes,
-        MessageAction="SUPPRESS",
-    )
-    logging.info(response)
-
     response = cognito_client.admin_add_user_to_group(
         UserPoolId=USER_POOL_ID, Username=username, GroupName="customer"
     )
-    logging.info(response)
+    print(response)
 
     return {
         "statusCode": 200,
