@@ -77,6 +77,11 @@ data "aws_vpc" "default" {
   default = true
 }
 
+data "aws_subnet" "default" {
+  for_each = toset(data.aws_subnets.default.ids)
+  id       = each.value
+}
+
 data "aws_lb" "orders_load_balancer" {
   name = var.orders_load_balancer_name
 }
