@@ -88,11 +88,11 @@ data "aws_subnet" "default" {
   id       = each.value
 }
 
-data "aws_lb" "orders_load_balancer" {
-  name = var.orders_load_balancer_name
+data "aws_lb" "orders-load-balancer" {
+  name = var.orders-load-balancer-name
 }
 
-resource "aws_lb" "orders_load_balancer" {
+resource "aws_lb" "orders-load-balancer" {
   name               = "orders-load-balancer-tf"
   internal           = false
   load_balancer_type = "network"
@@ -132,7 +132,7 @@ module "lambda_auth_sign_up" {
 
   environment_variables = {
     USER_POOL_ID      = aws_cognito_user_pool.user_pool.id
-    LOAD_BALANCER_DNS = data.aws_lb.orders_load_balancer.dns_name
+    LOAD_BALANCER_DNS = data.aws_lb.orders-load-balancer.dns_name
     TARGET_PORT       = var.target_group_port
   }
 

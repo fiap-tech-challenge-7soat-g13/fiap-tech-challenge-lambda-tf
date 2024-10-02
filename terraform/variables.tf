@@ -10,7 +10,7 @@ variable "tags" {
   }
 }
 
-variable "orders_load_balancer_name" {
+variable "orders-load-balancer-name" {
   description = "The name of the load balancer for the Orders Microservice"
   type        = string
   default     = "orders-load-balancer"
