@@ -32,15 +32,7 @@ resource "aws_cognito_user_pool" "user_pool" {
     required            = false
   }
 
-  lambda_config {
-    define_auth_challenge = module.lambda_auth_challenge.lambda_function_arn
-  }
-
   tags = var.tags
-
-  depends_on = [
-    module.lambda_auth_challenge
-  ]
 
   lifecycle {
     replace_triggered_by = [
