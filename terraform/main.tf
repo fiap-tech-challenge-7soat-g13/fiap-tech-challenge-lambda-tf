@@ -88,11 +88,7 @@ data "aws_subnet" "default" {
   id       = each.value
 }
 
-data "aws_lb" "orders-load-balancer" {
-  name = var.orders-load-balancer-name
-}
-
-resource "aws_lb" "orders-load-balancer" {
+data "aws_lb" "orders_load_balancer" {
   name               = "orders-load-balancer-tf"
   internal           = false
   load_balancer_type = "network"
