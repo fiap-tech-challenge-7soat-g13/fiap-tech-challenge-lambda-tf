@@ -93,7 +93,7 @@ data "aws_lb" "orders_load_balancer" {
 }
 
 resource "aws_lb" "orders_load_balancer" {
-  name               = "orders_load_balancer"
+  name               = "orders-load-balancer-tf"
   internal           = false
   load_balancer_type = "network"
   subnets            = [for subnet in data.aws_subnet.default : subnet.id if subnet.availability_zone != "us-east-1e"]
