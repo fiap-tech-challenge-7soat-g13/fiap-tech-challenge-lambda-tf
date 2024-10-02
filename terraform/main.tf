@@ -88,8 +88,12 @@ data "aws_subnet" "default" {
   id       = each.value
 }
 
-data "aws_lb" "orders_load_balancer" {
-  name               = "orders-load-balancer-tf"
+data "aws_lb" "orders_loadbalancer" {
+  name = "orders-load-balancer"
+}
+
+resource "aws_lb" "orders-load-balancer" {
+  name               = "orders-load-balancer"
   internal           = false
   load_balancer_type = "network"
   subnets            = [for subnet in data.aws_subnet.default : subnet.id if subnet.availability_zone != "us-east-1e"]
