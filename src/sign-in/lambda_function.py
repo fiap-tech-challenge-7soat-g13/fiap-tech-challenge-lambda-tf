@@ -28,6 +28,7 @@ def lambda_handler(event, context):
             AuthFlow='CUSTOM_AUTH',
             AuthParameters={'USERNAME': identifier}
         )
+        print('Code 200: ' + response)
         return {
             'statusCode': 200,
             'headers': {'Content-Type': 'application/json'},
@@ -38,6 +39,7 @@ def lambda_handler(event, context):
         logging.error(error)
 
         if error.response['Error']['Code'] == 'UserNotFoundException':
+            print('Code 401: ' + response)
             return {
                 'statusCode': 401,
                 'headers': {'Content-Type': 'application/json'},
@@ -51,6 +53,7 @@ def lambda_handler(event, context):
 
 
 def internal_error(error):
+    print('Code 500: ' + error)
     logging.error(error)
     return {
         'statusCode': 500,

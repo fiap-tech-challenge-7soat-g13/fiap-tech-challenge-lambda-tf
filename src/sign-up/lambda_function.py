@@ -11,7 +11,6 @@ USER_POOL_ID = os.environ.get("USER_POOL_ID")
 
 
 def lambda_handler(event, context):
-    print(event)
     email = event.get("email")
     password = event.get("password")
 
@@ -19,19 +18,11 @@ def lambda_handler(event, context):
     payload = {}
 
     if email:
-        print('Teste email: ' + email)
-        print(user_attributes)
         user_attributes.append({"Name": "custom:email", "Value": email})
-        print(user_attributes)
         payload["email"] = email
-        print(payload["email"])
 
-        print('Teste Password: ' + password)
-        print(user_attributes)
         user_attributes.append({"Name": "custom:password", "Value": password})
-        print(user_attributes)
         payload["password"] = password
-        print(payload["password"])
     else:
         return {
             "statusCode": 400,
