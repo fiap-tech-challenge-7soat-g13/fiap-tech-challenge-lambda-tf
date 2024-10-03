@@ -16,29 +16,44 @@ def lambda_handler(event, context):
     print(event)
 
     cpf = event.get("cpf")
+    cpf = event.get("password")
 
     user_attributes = []
     payload = {}
 
     if cpf:
         print('Teste CPF: ' + cpf)
-        username = cpf
-        print('username: ' + username)
         print(user_attributes)
-        user_attributes.append({"Name": "custom:CPF", "Value": cpf})
+        user_attributes.append({"Name": "custom:cpf", "Value": cpf})
         print(user_attributes)
-        payload["document"] = cpf
-        print(payload["document"])
+        payload["cpf"] = cpf
+        print(payload["cpf"])
+
+        print('Teste Password: ' + password)
+        print(user_attributes)
+        user_attributes.append({"Name": "custom:password", "Value": password})
+        print(user_attributes)
+        payload["password"] = password
+        print(payload["password"])
     else:
         return {
             "statusCode": 400,
             "headers": {"Content-Type": "application/json"},
-            "body": "{ 'message': 'Please provide either CPF and Name' }",
+            "body": "{ 'message': 'Please provide either CPF and Password' }",
         }
 
     response = cognito_client.admin_add_user_to_group(
-        UserPoolId=USER_POOL_ID, Username=username, GroupName="customer"
+        UserPoolId=USER_POOL_ID, Username=cpf, GroupName="customer"
     )
+
+    response = client.admin_create_user(
+        UserPoolId=USER_POOL_ID,
+        Username=cpf,
+        TemporaryPassword= password,
+        GroupName="customer"
+        UserAttributes=[{"Name": "cpf","Value": cpf}, { "Name": "password", "Value": "password" }]
+    )
+
     print(response)
 
     return {
