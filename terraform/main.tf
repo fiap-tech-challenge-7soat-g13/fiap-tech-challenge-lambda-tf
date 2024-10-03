@@ -10,6 +10,8 @@ resource "null_resource" "always_run" {
 
 resource "aws_cognito_user_pool" "user_pool" {
   name = "self-order-management"
+  username_attributes = ["CPF", "PASSWORD"]
+  auto_verified_attributes = ["CPF", "PASSWORD"]
 
   admin_create_user_config {
     allow_admin_create_user_only = true
@@ -24,6 +26,12 @@ resource "aws_cognito_user_pool" "user_pool" {
       min_length = 11
       max_length = 11
     }
+  }
+
+  schema {
+    attribute_data_type = "String"
+    name                = "PASSWORD"
+    required            = false
   }
 
   tags = var.tags
