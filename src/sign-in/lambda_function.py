@@ -22,7 +22,7 @@ def lambda_handler(event, context):
         }
 
     try:
-        response = client.admin_initiate_auth(
+        response = cognito.admin_initiate_auth(
             UserPoolId=USER_POOL_ID,
             ClientId=CLIENT_ID,
             AuthFlow='REFRESH_TOKEN_AUTH'
