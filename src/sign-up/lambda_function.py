@@ -44,7 +44,7 @@ def lambda_handler(event, context):
             "body": "{ 'message': 'Please provide either CPF and Password' }",
         }
 
-    response = client.admin_create_user(
+    response = cognito_client.admin_create_user(
         UserPoolId=USER_POOL_ID,
         Username=cpf,
         TemporaryPassword=password,
