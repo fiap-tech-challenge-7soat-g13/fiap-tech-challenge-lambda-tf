@@ -22,10 +22,16 @@ def lambda_handler(event, context):
         }
 
     try:
-        response = cognito.admin_get_user(
+        response = client.admin_initiate_auth(
             UserPoolId=USER_POOL_ID,
-            Username=identifier
+            ClientId=CLIENT_ID,
+            AuthFlow='REFRESH_TOKEN_AUTH'
+            AuthParameters={
+                'Username': username,
+                'Password': password,
+            }
         )
+
         logging.error(response)
         return {
             'statusCode': 200,
