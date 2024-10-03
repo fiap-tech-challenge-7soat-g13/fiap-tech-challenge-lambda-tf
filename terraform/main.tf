@@ -26,18 +26,6 @@ resource "aws_cognito_user_pool" "user_pool" {
     }
   }
 
-  schema {
-    attribute_data_type = "String"
-    name                = "CUSTOMER_ID"
-    required            = false
-  }
-
-  schema {
-    attribute_data_type = "String"
-    name                = "PASSWORD"
-    required            = false
-  }
-
   tags = var.tags
 
   lifecycle {
