@@ -12,13 +12,13 @@ CLIENT_ID = os.environ.get('CLIENT_ID')
 
 
 def lambda_handler(event, context):
-    identifier = event.get('cpf')
+    identifier = event.get('email')
 
     if not identifier:
         return {
             'statusCode': 400,
             'headers': {'Content-Type': 'application/json'},
-            'body': "{ 'message': 'Identifier (CPF) is required' }",
+            'body': "{ 'message': 'Identifier (Email) is required' }",
         }
 
     try:
