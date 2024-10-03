@@ -8,29 +8,23 @@ import boto3
 cognito_client = boto3.client("cognito-idp")
 
 USER_POOL_ID = os.environ.get("USER_POOL_ID")
-LOAD_BALANCER_DNS = os.environ.get("LOAD_BALANCER_DNS")
-TARGET_PORT = os.environ.get("TARGET_PORT")
 
 
 def lambda_handler(event, context):
     print(event)
-
-    cpf = event.get("cpf")
-    password = event.get("password")
     email = event.get("email")
+    password = event.get("password")
 
     user_attributes = []
     payload = {}
 
-    if cpf:
-        print('Teste CPF: ' + cpf)
-        username = cpf
-        print('username: ' + username)
+    if email:
+        print('Teste email: ' + email)
         print(user_attributes)
-        user_attributes.append({"Name": "custom:CPF", "Value": cpf})
+        user_attributes.append({"Name": "custom:email", "Value": email})
         print(user_attributes)
-        payload["document"] = cpf
-        print(payload["document"])
+        payload["email"] = email
+        print(payload["email"])
 
         print('Teste Password: ' + password)
         print(user_attributes)
@@ -38,24 +32,17 @@ def lambda_handler(event, context):
         print(user_attributes)
         payload["password"] = password
         print(payload["password"])
-
-        print('Teste email: ' + email)
-        print(user_attributes)
-        user_attributes.append({"Name": "custom:email", "Value": email})
-        print(user_attributes)
-        payload["email"] = email
-        print(payload["email"])
     else:
         return {
             "statusCode": 400,
             "headers": {"Content-Type": "application/json"},
-            "body": "{ 'message': 'Please provide either CPF and Password' }",
+            "body": "{ 'message': 'Please provide either Email and Password' }",
         }
 
     response = cognito_client.admin_create_user(
         UserPoolId=USER_POOL_ID,
-        Username=username,
-        TemporaryPassword=password,
+        Username=email,
+        Password=password,
         UserAttributes=[{"Name": "email","Value": email}]
     )
 

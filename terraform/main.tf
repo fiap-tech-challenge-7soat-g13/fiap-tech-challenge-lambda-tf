@@ -18,17 +18,6 @@ resource "aws_cognito_user_pool" "user_pool" {
 
   schema {
     attribute_data_type = "String"
-    name                = "cpf"
-    required            = false
-
-    string_attribute_constraints {
-      min_length = 11
-      max_length = 11
-    }
-  }
-
-  schema {
-    attribute_data_type = "String"
     name                = "email"
     required            = false
   }
