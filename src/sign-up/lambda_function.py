@@ -51,8 +51,8 @@ def lambda_handler(event, context):
     response = client.admin_create_user(
         UserPoolId=USER_POOL_ID,
         Username=cpf,
-        TemporaryPassword= password,
-        GroupName="customer"
+        TemporaryPassword=password,
+        GroupName="customer",
         UserAttributes=[{"Name": "CPF","Value": cpf}, { "Name": "PASSWORD", "Value": password }]
     )
 
