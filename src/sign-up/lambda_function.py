@@ -17,6 +17,7 @@ def lambda_handler(event, context):
 
     cpf = event.get("cpf")
     password = event.get("password")
+    email = event.get("email")
 
     user_attributes = []
     payload = {}
@@ -33,10 +34,17 @@ def lambda_handler(event, context):
 
         print('Teste Password: ' + password)
         print(user_attributes)
-        user_attributes.append({"Name": "custom:PASSWORD", "Value": password})
+        user_attributes.append({"Name": "custom:password", "Value": password})
         print(user_attributes)
         payload["password"] = password
         print(payload["password"])
+
+        print('Teste email: ' + email)
+        print(user_attributes)
+        user_attributes.append({"Name": "custom:email", "Value": email})
+        print(user_attributes)
+        payload["email"] = email
+        print(payload["email"])
     else:
         return {
             "statusCode": 400,
@@ -46,9 +54,9 @@ def lambda_handler(event, context):
 
     response = cognito_client.admin_create_user(
         UserPoolId=USER_POOL_ID,
-        Username=cpf,
+        Username=username,
         TemporaryPassword=password,
-        UserAttributes=[{"Name": "CPF","Value": cpf}, {"Name": "PASSWORD","Value": password}]
+        UserAttributes=[{"Name": "email","Value": email}]
     )
 
     print(response)
