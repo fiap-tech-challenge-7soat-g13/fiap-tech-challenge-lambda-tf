@@ -22,11 +22,9 @@ def lambda_handler(event, context):
         }
 
     try:
-        response = cognito.admin_initiate_auth(
+        response = cognito.admin_get_user(
             UserPoolId=USER_POOL_ID,
-            ClientId=CLIENT_ID,
-            AuthFlow='CUSTOM_AUTH',
-            AuthParameters={'USERNAME': identifier}
+            Username=identifier
         )
         logging.success(response)
         return {
