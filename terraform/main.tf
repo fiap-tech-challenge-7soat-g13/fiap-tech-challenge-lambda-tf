@@ -49,7 +49,6 @@ resource "aws_cognito_user_group" "admin" {
 resource "aws_cognito_user_group" "customer" {
   name                = "customer"
   user_pool_id        = aws_cognito_user_pool.user_pool.id
-  explicit_auth_flows = ["ALLOW_REFRESH_TOKEN_AUTH", "ALLOW_USER_SRP_AUTH", "ALLOW_USER_PASSWORD_AUTH"]
 
   depends_on = [
     aws_cognito_user_pool.user_pool
