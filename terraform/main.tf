@@ -101,6 +101,7 @@ module "lambda_auth_sign_up" {
       effect = "Allow"
       actions = [
         "cognito-idp:AdminCreateUser",
+        "cognito-idp:AdminGetUser",
         "cognito-idp:AdminAddUserToGroup"
       ]
       resources = [
@@ -133,7 +134,8 @@ module "lambda_auth_sign_in" {
     cognito = {
       effect = "Allow"
       actions = [
-        "cognito-idp:AdminInitiateAuth"
+        "cognito-idp:AdminInitiateAuth",
+        "cognito-idp:AdminGetUser",
       ]
       resources = [
         aws_cognito_user_pool.user_pool.arn
