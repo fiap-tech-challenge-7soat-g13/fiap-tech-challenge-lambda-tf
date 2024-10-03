@@ -16,7 +16,6 @@ def lambda_handler(event, context):
     print(event)
 
     cpf = event.get("cpf")
-    cpf = event.get("password")
 
     user_attributes = []
     payload = {}
