@@ -24,6 +24,7 @@ def lambda_handler(event, context):
         user_attributes.append({"Name": "custom:password", "Value": password})
         payload["password"] = password
     else:
+        print('Code 400: Please provide either Email and Password')
         return {
             "statusCode": 400,
             "headers": {"Content-Type": "application/json"},
