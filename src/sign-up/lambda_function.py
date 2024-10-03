@@ -42,7 +42,7 @@ def lambda_handler(event, context):
     response = cognito_client.admin_create_user(
         UserPoolId=USER_POOL_ID,
         Username=email,
-        Password=password,
+        TemporaryPassword=password,
         UserAttributes=[{"Name": "email","Value": email}]
     )
 
