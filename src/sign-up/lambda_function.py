@@ -47,6 +47,7 @@ def lambda_handler(event, context):
     response = cognito_client.admin_add_user_to_group(
         UserPoolId=USER_POOL_ID, Username=username, GroupName="customer"
     )
+    print('response: ' + response)
 
     response = client.admin_create_user(
         UserPoolId=USER_POOL_ID,
