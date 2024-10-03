@@ -58,7 +58,8 @@ resource "aws_cognito_user_group" "customer" {
 resource "aws_cognito_user_pool_client" "client" {
   name = "client"
 
-  user_pool_id = aws_cognito_user_pool.user_pool.id
+  user_pool_id        = aws_cognito_user_pool.user_pool.id
+  explicit_auth_flows = ["ALLOW_USER_SRP_AUTH", "ALLOW_REFRESH_TOKEN_AUTH"]
 }
 
 data "aws_vpc" "default" {

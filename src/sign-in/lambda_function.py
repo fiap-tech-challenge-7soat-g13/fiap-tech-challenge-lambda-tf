@@ -13,6 +13,7 @@ CLIENT_ID = os.environ.get('CLIENT_ID')
 
 def lambda_handler(event, context):
     identifier = event.get('email')
+    password = event.get('password')
 
     if not identifier:
         return {
@@ -25,9 +26,9 @@ def lambda_handler(event, context):
         response = cognito.admin_initiate_auth(
             UserPoolId=USER_POOL_ID,
             ClientId=CLIENT_ID,
-            AuthFlow='ADMIN_USER_PASSWORD_AUTH'
+            AuthFlow='ADMIN_USER_PASSWORD_AUTH',
             AuthParameters={
-                'USERNAME': username,
+                'USERNAME': identifier,
                 'PASSWORD': password,
             }
         )
