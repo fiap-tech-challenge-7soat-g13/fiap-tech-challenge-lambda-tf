@@ -48,7 +48,7 @@ def lambda_handler(event, context):
         UserPoolId=USER_POOL_ID,
         Username=cpf,
         TemporaryPassword=password,
-        UserAttributes=[{"Name": "CPF","Value": cpf}, { "Name": "PASSWORD", "Value": password }]
+        UserAttributes=[{"Name": "CPF","Value": cpf}]
     )
 
     print(response)
