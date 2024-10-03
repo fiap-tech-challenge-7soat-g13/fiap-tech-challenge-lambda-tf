@@ -32,6 +32,12 @@ resource "aws_cognito_user_pool" "user_pool" {
     required            = false
   }
 
+  schema {
+    attribute_data_type = "String"
+    name                = "PASSWORD"
+    required            = false
+  }
+
   tags = var.tags
 
   lifecycle {
