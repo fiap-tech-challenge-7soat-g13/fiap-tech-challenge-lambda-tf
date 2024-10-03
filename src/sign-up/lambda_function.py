@@ -42,19 +42,13 @@ def lambda_handler(event, context):
     response = cognito_client.admin_create_user(
         UserPoolId=USER_POOL_ID,
         Username=email,
-        TemporaryPassword=password,
-        UserAttributes=[{"Name": "email","Value": email}]
+        TemporaryPassword=password
     )
 
     print(response)
 
-    response = cognito_client.admin_add_user_to_group(
-        UserPoolId=USER_POOL_ID, Username=username, GroupName="customer"
-    )
-    print('response: ' + response)
-
     return {
         "statusCode": 200,
         "headers": {"Content-Type": "application/json"},
-        "body": json.dumps({ 'customer_id': customer_id }),
+        "body": json.dumps({ 'email': response.get('User').get('Username') }),
     }
