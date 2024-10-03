@@ -26,7 +26,7 @@ def lambda_handler(event, context):
             UserPoolId=USER_POOL_ID,
             Username=identifier
         )
-        logging.success(response)
+        logging.error(response)
         return {
             'statusCode': 200,
             'headers': {'Content-Type': 'application/json'},
