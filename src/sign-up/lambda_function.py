@@ -24,14 +24,14 @@ def lambda_handler(event, context):
     if cpf:
         print('Teste CPF: ' + cpf)
         print(user_attributes)
-        user_attributes.append({"Name": "custom:cpf", "Value": cpf})
+        user_attributes.append({"Name": "custom:CPF", "Value": cpf})
         print(user_attributes)
         payload["cpf"] = cpf
         print(payload["cpf"])
 
         print('Teste Password: ' + password)
         print(user_attributes)
-        user_attributes.append({"Name": "custom:password", "Value": password})
+        user_attributes.append({"Name": "custom:PASSWORD", "Value": password})
         print(user_attributes)
         payload["password"] = password
         print(payload["password"])
@@ -47,7 +47,7 @@ def lambda_handler(event, context):
         Username=cpf,
         TemporaryPassword= password,
         GroupName="customer"
-        UserAttributes=[{"Name": "cpf","Value": cpf}, { "Name": "password", "Value": "password" }]
+        UserAttributes=[{"Name": "CPF","Value": cpf}, { "Name": "PASSWORD", "Value": password }]
     )
 
     print(response)

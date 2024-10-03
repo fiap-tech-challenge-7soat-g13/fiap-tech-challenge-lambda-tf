@@ -17,7 +17,7 @@ resource "aws_cognito_user_pool" "user_pool" {
 
   schema {
     attribute_data_type = "String"
-    name                = "cpf"
+    name                = "CPF"
     required            = true
 
     string_attribute_constraints {
@@ -28,8 +28,14 @@ resource "aws_cognito_user_pool" "user_pool" {
 
   schema {
     attribute_data_type = "String"
-    name                = "password"
+    name                = "PASSWORD"
     required            = true
+  }
+
+  schema {
+    attribute_data_type = "String"
+    name                = "CUSTOMER_ID"
+    required            = false
   }
 
   tags = var.tags
