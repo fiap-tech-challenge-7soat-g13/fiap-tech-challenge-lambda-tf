@@ -6,7 +6,7 @@ data "terraform_remote_state" "tech-challenge" {
   backend = "s3"
 
   config = {
-    bucket = "fiap-3soat-g13-tech-challenge"
+    bucket = "terraform-state-829dbe75"
     key    = "live/terraform.tfstate"
     region = var.region
   }
