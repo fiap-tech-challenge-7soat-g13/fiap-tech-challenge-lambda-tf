@@ -42,5 +42,5 @@ def lambda_handler(event, context):
     return {
         "statusCode": 200,
         "headers": {"Content-Type": "application/json"},
-        "body": json.dumps({ 'email': response.get('User').get('Username') }),
+        "body": { 'email': response.get('User').get('Username') },
     }
