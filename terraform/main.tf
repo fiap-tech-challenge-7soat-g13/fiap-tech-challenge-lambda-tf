@@ -9,7 +9,7 @@ resource "null_resource" "always_run" {
 }
 
 resource "aws_cognito_user_pool" "user_pool" {
-  name = "self-order-management"
+  name                = "self-order-management"
   username_attributes = ["email"]
 
   admin_create_user_config {
@@ -21,7 +21,7 @@ resource "aws_cognito_user_pool" "user_pool" {
     name                = "email"
     required            = false
   }
-  
+
   schema {
     attribute_data_type = "String"
     name                = "pasword"
@@ -47,8 +47,8 @@ resource "aws_cognito_user_group" "admin" {
 }
 
 resource "aws_cognito_user_group" "customer" {
-  name                = "customer"
-  user_pool_id        = aws_cognito_user_pool.user_pool.id
+  name         = "customer"
+  user_pool_id = aws_cognito_user_pool.user_pool.id
 
   depends_on = [
     aws_cognito_user_pool.user_pool
@@ -56,7 +56,7 @@ resource "aws_cognito_user_group" "customer" {
 }
 
 resource "aws_cognito_user_pool_client" "client" {
-  name                = "client"
+  name = "client"
 
   user_pool_id        = aws_cognito_user_pool.user_pool.id
   explicit_auth_flows = ["ALLOW_ADMIN_USER_PASSWORD_AUTH", "ALLOW_REFRESH_TOKEN_AUTH", "ALLOW_USER_SRP_AUTH", "ALLOW_USER_PASSWORD_AUTH", "ALLOW_CUSTOM_AUTH"]
@@ -92,8 +92,8 @@ module "lambda_auth_sign_up" {
   }
 
   environment_variables = {
-    USER_POOL_ID      = aws_cognito_user_pool.user_pool.id
-    TARGET_PORT       = var.target_group_port
+    USER_POOL_ID = aws_cognito_user_pool.user_pool.id
+    TARGET_PORT  = var.target_group_port
   }
 
   attach_policy_statements = true
