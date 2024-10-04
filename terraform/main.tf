@@ -12,14 +12,6 @@ data "terraform_remote_state" "tech-challenge" {
   }
 }
 
-data "aws_lambda_function" "auth_sign_in" {
-  function_name = "auth-sign-in"
-}
-
-data "aws_lambda_function" "auth_sign_up" {
-  function_name = "auth-sign-up"
-}
-
 resource "null_resource" "always_run" {
   triggers = {
     timestamp = timestamp()
@@ -128,6 +120,14 @@ module "lambda_auth_sign_up" {
   vpc_subnet_ids         = data.terraform_remote_state.tech-challenge.outputs.private_subnets
   vpc_security_group_ids = [aws_security_group.auth_sign_up.id]
   attach_network_policy  = true
+}
+
+data "aws_lambda_function" "auth_sign_in" {
+  function_name = "auth-sign-in"
+}
+
+data "aws_lambda_function" "auth_sign_up" {
+  function_name = "auth-sign-up"
 }
 
 module "lambda_auth_sign_in" {
