@@ -179,7 +179,7 @@ resource "aws_lb" "apigateway" {
   name                       = "orders-load-balancer"
   internal                   = true
   load_balancer_type         = "network"
-  subnets                    = data.aws_subnet.subnet.id
+  subnets                    = data.aws_subnet.subnet[each.id]
   enable_deletion_protection = true
 }
 
