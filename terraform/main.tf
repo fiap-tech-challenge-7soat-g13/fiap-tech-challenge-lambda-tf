@@ -12,6 +12,14 @@ data "terraform_remote_state" "tech-challenge" {
   }
 }
 
+data "aws_lambda_function" "auth_sign_in" {
+  function_name = "auth-sign-in"
+}
+
+data "aws_lambda_function" "auth_sign_up" {
+  function_name = "auth-sign-up"
+}
+
 resource "null_resource" "always_run" {
   triggers = {
     timestamp = timestamp()
