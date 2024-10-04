@@ -31,6 +31,7 @@ resource "aws_api_gateway_method_response" "default" {
   response_models = {
     "application/json" = "Empty"
   }
+  depends_on = [aws_api_gateway_integration.lambda]
 }
 resource "aws_api_gateway_integration_response" "default" {
   rest_api_id = aws_api_gateway_rest_api.default.id
@@ -40,6 +41,7 @@ resource "aws_api_gateway_integration_response" "default" {
   response_templates = {
     "application/json" = ""
   }
+  depends_on = [aws_api_gateway_integration.lambda]
 }
 resource "aws_lambda_permission" "default" {
   statement_id  = "AllowExecutionFromAPIGateway"
