@@ -155,6 +155,18 @@ resource "aws_vpc" "main" {
   cidr_block = "10.0.0.0/16"
 }
 
+data "aws_subnets" "subnets" {
+  filter {
+    name   = "vpc-id"
+    values = [data.aws_vpc.default.id]
+  }
+}
+
+data "aws_subnet" "subnet" {
+  for_each = toset(data.aws_subnets.subnets.ids)
+  id       = each.value
+}
+
 data "aws_lambda_function" "auth_sign_in" {
   function_name = "auth-sign-in"
 }
@@ -167,6 +179,7 @@ resource "aws_lb" "apigateway" {
   name                       = "orders-load-balancer"
   internal                   = true
   load_balancer_type         = "network"
+  subnets                    = data.aws_subnets.subnet.ids
   enable_deletion_protection = true
 }
 
