@@ -151,55 +151,6 @@ data "aws_vpc" "default" {
   default = true
 }
 
-resource "aws_security_group" "auth_sign_up" {
-  name   = "auth_sign_up"
-  vpc_id = data.aws_vpc.default.id
-
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-}
-
-module "lambda_auth_sign_up" {
-  source  = "terraform-aws-modules/lambda/aws"
-  version = "7.2.2"
-
-  function_name = "auth-sign-up"
-  handler       = "lambda_function.lambda_handler"
-  runtime       = local.runtime
-
-  source_path = {
-    path             = "../src/sign-up"
-    pip_requirements = true
-  }
-
-  environment_variables = {
-    USER_POOL_ID      = aws_cognito_user_pool.user_pool.id
-    TARGET_PORT       = var.target_group_port
-  }
-
-  attach_policy_statements = true
-  policy_statements = {
-    cognito = {
-      effect = "Allow"
-      actions = [
-        "cognito-idp:AdminCreateUser",
-        "cognito-idp:AdminGetUser",
-        "cognito-idp:AdminAddUserToGroup"
-      ]
-      resources = [
-        aws_cognito_user_pool.user_pool.arn
-      ]
-    }
-  }
-
-  vpc_security_group_ids = [aws_security_group.auth_sign_up.id]
-  attach_network_policy  = true
-}
-
 module "lambda_auth_sign_in" {
   source  = "terraform-aws-modules/lambda/aws"
   version = "7.2.2"
