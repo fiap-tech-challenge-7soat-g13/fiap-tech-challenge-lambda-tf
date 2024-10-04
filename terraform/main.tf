@@ -190,7 +190,6 @@ resource "aws_api_gateway_rest_api" "api_gateway" {
       api_gateway_role           = aws_iam_role.api_gateway_lambda.arn
       lambda_auth_sign_up_arn    = data.aws_lambda_function.auth_sign_up.invoke_arn
       lambda_auth_sign_in_arn    = data.aws_lambda_function.auth_sign_in.invoke_arn
-      lambda_auth_authorizer_arn = data.aws_lambda_function.auth_authorizer.invoke_arn
     }
   )
 
