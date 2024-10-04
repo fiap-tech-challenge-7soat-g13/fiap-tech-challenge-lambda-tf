@@ -2,6 +2,16 @@ locals {
   runtime = "python3.12"
 }
 
+data "terraform_remote_state" "tech-challenge" {
+  backend = "s3"
+
+  config = {
+    bucket = "fiap-3soat-g13-tech-challenge"
+    key    = "live/terraform.tfstate"
+    region = var.region
+  }
+}
+
 resource "null_resource" "always_run" {
   triggers = {
     timestamp = timestamp()

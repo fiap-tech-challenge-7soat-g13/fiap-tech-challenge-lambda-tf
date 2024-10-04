@@ -13,6 +13,7 @@ variable "tags" {
 variable "load_balancer_name" {
   description = "The name of the load balancer"
   type        = string
+  default     = "orders-load-balancer"
 }
 
 variable "target_group_port" {
