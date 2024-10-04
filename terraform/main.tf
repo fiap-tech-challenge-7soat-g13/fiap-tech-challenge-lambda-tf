@@ -182,7 +182,7 @@ resource "aws_api_gateway_rest_api" "api_gateway" {
   name = "Self-Order Management API"
 
   body = templatefile(
-    "${path.module}/../src/api/.generated/api.json",
+    "../src/api/.generated/api.json",
     {
       target_group_port          = var.target_group_port
       dns_name                   = data.aws_lb.orders_load_balancer.dns_name
