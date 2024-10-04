@@ -151,42 +151,6 @@ data "aws_vpc" "default" {
   default = true
 }
 
-module "lambda_auth_sign_in" {
-  source  = "terraform-aws-modules/lambda/aws"
-  version = "7.2.2"
-
-  function_name = "auth-sign-in"
-  handler       = "lambda_function.lambda_handler"
-  runtime       = local.runtime
-
-  source_path = "../src/sign-in"
-
-  environment_variables = {
-    USER_POOL_ID = aws_cognito_user_pool.user_pool.id
-    CLIENT_ID    = aws_cognito_user_pool_client.client.id
-  }
-
-  attach_policy_statements = true
-  policy_statements = {
-    cognito = {
-      effect = "Allow"
-      actions = [
-        "cognito-idp:AdminInitiateAuth",
-        "cognito-idp:AdminGetUser",
-      ]
-      resources = [
-        aws_cognito_user_pool.user_pool.arn
-      ]
-    }
-  }
-
-  tags = var.tags
-
-  depends_on = [
-    aws_cognito_user_pool.user_pool
-  ]
-}
-
 data "aws_lb" "load_balancer" {
   name = "orders-load-balancer"
 }
