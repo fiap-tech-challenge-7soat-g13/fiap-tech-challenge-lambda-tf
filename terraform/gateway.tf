@@ -1,8 +1,5 @@
-data "aws_lambda_function" "signin" {
-  function_name = "auth-sign-in"
-}
 resource "aws_api_gateway_rest_api" "default" {
-  name = "teste"
+  name = "default"
   endpoint_configuration {
     types = ["REGIONAL"]
   }
@@ -24,7 +21,7 @@ resource "aws_api_gateway_integration" "lambda" {
   http_method             = aws_api_gateway_method.method.http_method
   integration_http_method = "POST"
   type                    = "AWS"
-  uri                     = data.aws_lambda_function.signin.invoke_arn
+  uri                     = module.lambda_auth_sign_in.lambda_function_invoke_arn
 }
 resource "aws_api_gateway_method_response" "default" {
   rest_api_id = aws_api_gateway_rest_api.default.id
@@ -47,7 +44,7 @@ resource "aws_api_gateway_integration_response" "default" {
 resource "aws_lambda_permission" "default" {
   statement_id  = "AllowExecutionFromAPIGateway"
   action        = "lambda:InvokeFunction"
-  function_name = data.aws_lambda_function.signin.function_name
+  function_name = module.lambda_auth_sign_in.lambda_function_name
   principal     = "apigateway.amazonaws.com"
   source_arn    = "${aws_api_gateway_rest_api.default.execution_arn}/*/*"
 }
