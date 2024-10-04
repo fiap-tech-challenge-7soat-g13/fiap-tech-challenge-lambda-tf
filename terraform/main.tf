@@ -155,12 +155,6 @@ resource "aws_vpc" "main" {
   cidr_block = "10.0.0.0/16"
 }
 
-resource "aws_subnet" "subnet_a" {
-  vpc_id            = aws_vpc.main.id
-  cidr_block        = "10.0.1.0/24"
-  availability_zone = "us-east-1a"
-}
-
 data "aws_lambda_function" "auth_sign_in" {
   function_name = "auth-sign-in"
 }
@@ -169,25 +163,10 @@ data "aws_lambda_function" "auth_sign_up" {
   function_name = "auth-sign-up"
 }
 
-data "aws_subnets" "private_subnets" {
-  filter {
-    name   = "tag:Name"
-    values = ["*private*"]
-  }
-}
-
-data "aws_subnets" "public_subnets" {
-  filter {
-    name   = "tag:Name"
-    values = ["subnet-03b29d1a8c9ff8531", "subnet-0942a186952fcd474"]
-  }
-}
-
 resource "aws_lb" "apigateway" {
   name                       = "orders-load-balancer"
   internal                   = true
   load_balancer_type         = "network"
-  subnets                    = data.aws_subnets.public_subnets.ids
   enable_deletion_protection = true
 }
 
