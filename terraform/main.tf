@@ -7,8 +7,8 @@ data "terraform_remote_state" "tech-challenge" {
 
   config = {
     bucket = "terraform-state-829dbe75"
-    key    = "live/terraform.tfstate"
-    region = var.region
+    key    = "fiap-tech-challenge-lambda-tf"
+    region = "us-east-1"
   }
 }
 
