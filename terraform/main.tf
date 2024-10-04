@@ -181,10 +181,8 @@ resource "aws_api_gateway_vpc_link" "vpc_link" {
 resource "aws_api_gateway_rest_api" "api_gateway" {
   name = "Self-Order Management API"
 
-  config_yaml = yamldecode(file("../src/api/api.yaml"))
-
   body = templatefile(
-    config_yaml,
+    "../src/api/api.yaml",
     {
       target_group_port          = var.target_group_port
       dns_name                   = data.aws_lb.orders_load_balancer.dns_name
