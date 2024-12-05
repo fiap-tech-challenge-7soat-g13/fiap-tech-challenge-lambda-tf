@@ -15,3 +15,7 @@ variable "target_group_port" {
   type        = number
   default     = 80
 }
+
+variable "domain" {
+  default = "challenge.dev.br"
+}
