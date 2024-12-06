@@ -62,6 +62,8 @@ jobs:
       run:
         working-directory: ./docs
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
       - name: Set up Docker Buildx
